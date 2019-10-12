@@ -1,0 +1,125 @@
+
+constructor Vector3(float x=0, float y=0, float z=0)
+{
+    this.x = x;
+    this.y = y;
+    this.z = z;
+}
+
+public:
+
+    int x
+    int y
+    int z
+    int id = 1
+
+    // overload operators: + - * / % ^
+
+    Vector3 overload + (Vector3 other)
+    {
+        return Vector3 result(x + other.x, y + other.y, z + other.z)
+    }
+
+    Vector3 overload + (int other)
+    {
+        return Vector3 result(x + other, y + other, z + other)
+    }
+
+    Vector3 overload * (int other)
+    {
+        return Vector3 result(x * other, y * other, z * other)
+    }
+
+    int overload * (Vector3 other)
+    {
+        return x * other.x * y + other.y + z * other.z
+    }
+
+
+private:
+
+    // Setters and getters will be implicitly called every time an attribute is set/get. Omitting setters/getters will
+    // resolve to default, i.e. just setting and getting as expected.
+
+    set id(int value)
+    {
+        id = clamp(value, 0, 100)
+        save_to_log(id)
+    }
+
+    get id()
+    {
+        return load_from_log(id)
+    }
+
+
+    // Setters/getters doesn't need an actual attribute, they can just alias as one.
+
+    set length(int value)
+    {
+        x, y, z = transform_to_length(x, y, z, value)
+    }
+
+    get length()
+    {
+        return length_of(x, y, z)
+    }
+
+#end
+
+
+
+int main()
+{
+    // Data types can (but don't have to) be omitted for the built-in types, since they can be determined by the literal.
+    //
+
+    int age = 10
+    other_age = 10
+
+    time = 20.0
+    time = 20f
+    float time = 20
+
+    list numbers = [1, 2, 3, 4]  // list numbers(1, 2, 3, 4)
+    tuple ages = (22, 32, 23)
+
+
+}
+
+
+int calculate_x()
+{
+    int temp = 4
+
+    for (unsigned int i = 0; i < 10; i++)
+    {
+        if i < 10
+        {
+            temp += i
+        }
+
+        temp += i if i > 10
+        temp = 10 if i > 10 else 20
+        temp = 0 if i > 25, 35 if i == 0, 8 if i < 0 else 20
+        temp = 0 if i > 25 else 35 if i == 0 else 8 if i < 0 else 20
+    }
+
+    return temp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

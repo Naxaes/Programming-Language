@@ -1,0 +1,63 @@
+Everything that could be a field should act like a field, even though it technically isn't. In this example is
+'minutes_old' represented as a field but is received by calling a function when accessed. This allows for some
+syntactic sugar when using the value in arithmetic expression. (Look up C#!)
+
+    ted = Person(name='Ted', age=22)
+    print('In 10 minutes, Ted is &minutes old', minutes=ted.minutes_old + 10)
+
+This should hold true even for fields with more than one value (like a list or vector). The it will look something
+like this:
+
+    vector = List(size=10, data=[1, 2, 3, 4])
+    print('Vector has &elements', elements=vector.data)
+    vector.data += [4, 3, 2, 1]
+
+
+
+
+class Person:
+
+
+    public:
+
+        string  name            "What to call the person."
+        int     age             "The amount of years the person has lived."
+        int     birth_year      "The year the person was born."
+        int     minutes_old     "The amount of minutes the person has lived."
+        Person  parent          "The person's parent. Even though people have two parents, only one can be the sole
+                                 parent. This is mainly to test how it would look with docstrings that are much longer
+                                 than just one line. Does it look weird or is it okay? Look at it again after a while
+                                 and decide later."
+
+        Person(string name, int age = 20):
+            this.name = name
+            this.age = age
+            this.birth_year = current_year - age
+
+        Person(string name, int birth_year):
+            this.name = name
+            this.birth_year = birth_year
+            this.age = current_year - birth_year
+
+        void talk():
+            print('Hello there! My name is ' + name)
+
+        void add_friend(string name):
+            friends.append(name)
+
+        void remove_friend(string name):
+            try friends.remove(name) else print('You had no such friend')
+
+
+    private:
+
+        int     current_year    "The year when the person was created."
+        list    friends         "All the friends the person has."
+
+
+        current_year = time.get_year()
+        friends = ['Bob', 'Tom', 'Leo', 'Macaroni']  # Redundancy or clarity?
+
+        get minutes_old():
+            return age * 365 * 24 * 60
+

@@ -1,0 +1,16 @@
+create variable count
+assign [to] variable count, five
+output variable count assuming variable count is equal to five
+
+
+
+
+create variable sum and assign zero
+assign [to] variable sum, variable sum plus five
+
+output five times six minus four over three
+
+
+
+
+

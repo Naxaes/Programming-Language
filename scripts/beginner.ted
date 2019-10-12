@@ -1,0 +1,107 @@
+a := 1;                         // Implicit integer.
+b : int = 1;                    // Explicit integer.
+
+c := 1.0;                       // Implicit real.
+d : real = 1.0;                 // Explicit real.
+
+e := "Hello there!";            // String constant.
+f : string = "Hello";           // Explicit string.
+
+
+print "\nPrinting";
+
+print "a =", a;                 // Printing string constants and variables.
+print "b =", b;
+
+print "c =", c, "| d =", d;    // Multiple printing.
+print "e =", e, "| f =", f;
+
+print e + f;                    // Printing expressions, string concatenation.
+
+
+print "\nMath operations";
+
+g : int = 2 pow 8 + sqrt 16;    // Math operations.
+print g;
+print 5 + 5 * 2;                // Math operation precedence.
+
+
+print "\nDeclare procedures";
+x := {                          // Procedure.
+    z := 3;
+    y := 4;
+    print "z + y =", z + y;
+};
+call x;                         // Procedure call.
+
+
+print "\nNested blocks";
+a0 := 0;                        // Nested blocks will look above for declaration
+{
+    a1 := 1;
+    print a0, a1;
+    {
+        a2 := 2;
+        print a0, a1, a2;
+        {
+            a3 := 3;
+            print a0, a1, a2, a3;
+        }
+    }
+    // print a3;                // NameError!
+}
+
+                                // Prefix and postfix increment/decrement.
+print ++1;
+print 1++--++--++++++;
+
+
+
+x := 5;
+y := 8;
+
+if x < y then { print "x is less than y"; }         // Comparison.
+if x > y then { print "x is greater than y"; }
+
+if x == y then { print "x is greater than y"; }     // Else-clause.
+else { print "x is not greater than y"; }
+
+if x < 2      then { print "x is less than 2"; }     // If-else if-else clause
+else if x < 3 then { print "x is less than 3"; }
+else if x < 4 then { print "x is less than 4"; }
+else if x < 5 then { print "x is less than 5"; }
+else if x < 6 then { print "x is less than 6"; }
+else if x < 7 then { print "x is less than 7"; }
+else { print "x is not less than 7"; }
+
+
+if 1 == 1 then {                                    // Nested if clauses.
+    if 2 == 2 then {
+        inner := 5;
+    }
+}
+// print inner;                                     // NameError.
+
+
+loop_variable := 0;
+while loop_variable < 10 then {
+    print loop_variable;
+    loop_variable = loop_variable + 1;
+}
+
+
+// y := 0;
+// x := {
+//     y = y + 1;
+//     print "Recursion", y;
+//     if y < 10 then {
+//         call x;               // Recursion.
+//     }
+// };
+// call x;
+
+
+
+// x : int;
+
+// test : (x : int, y : int) = { return x + y; }

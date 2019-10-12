@@ -1,0 +1,14 @@
+a : float;
+a : float = 5.9;
+a := 5.9
+
+increment := (int a) -> a { a++; }  // increment : procedure = (int a) -> a { a++; }
+
+test := 5;
+
+print("Test = %", test)  // Test = 5 
+increment(test);
+print("Test = %", test)  // Test = 6 
+
+
+increment := (int a) -> int b { b = a++; }

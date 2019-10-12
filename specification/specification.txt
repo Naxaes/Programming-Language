@@ -1,0 +1,108 @@
+
+The TED language:
+
+    The language should give the programmer full control with as little as possible being implicitly implemented.
+    The syntax must offer a way to write beautiful code.
+    The language should, as much as possible, be self-contained and don't rely on the compiler, external programs or the os.
+    The language should support a console which runs in compile time, offering quick ways to test small snippets of code.
+
+
+Grammar
+
+
+
+
+
+
+
+Supported in-built data types are:
+
+    voidN  (if you just want to work with memory and don't care about the specific data type)
+    uintN
+    intN
+    realN
+
+    string
+
+    N is the bit size: 1, 2, 4, 8, 16, 32, or 64. Omitting the bit size will result in a 32 bit value.
+    
+    char doesn't exist since its a uint8.
+    bool doesn't exist since its any data type (true if it's non-zero and false otherwise).
+
+    Arrays should contain a count variable and a data pointer. This allows us to use the count variable to iterate
+    through arrays and strings without passing a count variable around to every function, or using a null char.
+
+    By having a count variable in the string struct it's a O(1) operation to get the strings length, which is a very
+    common operation. If the string is less than 255 characters, then we'll not use any more data than having a null
+    terminated string, assuming we're working with 8-bits values. It's probably more common to use UTF-16 encoded
+    strings, which mean that we'll not use any more data than if the string contains less than 65,536 characters.
+    Worst case scenario is using a long (say 2^32) utf-8 string; then we'll spend 3 bytes more than a null terminated
+    string for a 2^32 * 8 = 34,359,738,368 bit = 4,294,967,296 byte string. Determine the count will however be a
+    constant operation, instead of having to loop through the string to find the null byte. In order to be compatible
+    with C, maybe have the size variable at array index -1 (call it a non-null terminated string and put the size
+    variable before the actual array).
+
+
+Statically typed or statically inferred.
+
+    // Creating variables.
+    a : float;      // Allocates memory for a float.
+    a : float = 4;  // Creates a float 4.0f
+    a := 4.0f;      // Infer to creates a float 4.0f
+
+    // Creating functions.
+    test := (a : int, b : int) -> int { return a + b; }
+    test : function = (a : int, b : int) -> int { return a + b; }
+
+
+The function keyword promises no change of states, in other words promises a pure function.
+
+    If it has a return statement it's a function. If it instead has a named return value, that
+    value can be assigned to, making it a procedure.
+
+    test : function  = (int* a) -> void { *a = 5; }   // Compile error since the input variable changes.
+    test : procedure = (int* a) -> void { *a = 5; }   // Will compile.
+
+
+
+The brackets {} creates an isolated namespace.
+
+    temp := {   // This creates a namespace with the variables a, b and c.
+        int a;  // In other languages this is a struct, but in this language its a namespace.
+        int b;  // It acts like a struct when named, but it doesn't have to be assigned
+        int c;  // to a name. A namespace can be created directly passed in a parameter
+    };          // or used as a isolated block inside a function.
+
+    use temp;   // Puts the namespace temp inside the current namespace.
+    a = 5;      // Changes the actual a value inside temp.
+                // At the end of the scope, the variables are put into temp again.
+
+
+    The use keyword can import variables from an outer scope into a enclosed namespace.
+    This allows for easier refactoring since it explicitly shows the dependencies of the 
+    enclosed namespace. 
+    It also makes it easier to reuse names without nameclashing or shadowing variables in a 
+    higher scope. 
+    Lastly, it narrows down the attention to a smaller area, allowing for easier 
+    understanding of the process.
+
+
+    int x;
+    int y;
+    int z;
+
+    use x, y in {      // "Imports" variable x and y into the namespace.
+        int a = 0;     // Creates variabel local to the namespace.
+        print(x + a);  // Uses the local a and x from outer scope.
+        print(y - x);  // Uses x and y from outer scope.
+        print(z + x):  // Compile error since z is not defined in the namespace.
+    }                  // Delete local variable a.
+
+
+
+Functions 
+
+
+
+
+

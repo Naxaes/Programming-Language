@@ -1,0 +1,13 @@
+
+
+a : int = 4;
+b : real = 4f;
+
+calculate_length [a : Vector, b : Vector] = {
+
+
+}
+
+
+
+a = 1, 2, 3

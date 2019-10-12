@@ -1,0 +1,81 @@
+
+**** LIST OF IMPORTANT FEATURES ****
+
+
+1. PROPERTIES:
+    Pros:
+        Accessing members by dot notation is much cleaner than getters and setters methods. Also, since the syntax for
+        accessing a member or a property is the same, the programmer can choose to change the code (if he/she realize
+        the member needs to be encapsulated) without breaking the code.
+
+    Cons:
+        Adds an overhead (but with the conventional approach being to use getters and setters it'll be exactly the
+        same). For some, it might be too abstract since assignments generally don't alter the value.
+
+
+
+2. OVERLOADING: (Don't have overloading and support vectors/matrices as a language feature?)
+    Pros:
+        Overloading can create much more readable code, especially when dealing with matrices and vectors. This, along
+        with properties, creates great opportunities to create beautiful code.
+
+        For example:
+
+            vector = vector1.add(vector2).divide((vector1.add(vector2)).length())
+
+        Becomes:
+
+            vector = (vector1 - vector2) / (vector1 + vector2).length()
+
+    Cons:
+        Overloading can be misused and create ambiguity.
+
+
+3. BUILT-IN LITERALS: (Will most likely be extremely restricted due to symbols should not have different meanings)
+    Pros:
+        Provides a quick way to create often used constructs like lists, tuples, strings etc.
+
+        String (literally) : ""  # Creates a string without encoding symbols as \n, \t, \r, ...
+        String (represent) : ''  # Creates a string with encoding. (Too low contrast with above?)
+        Array/tuple/record : []  # Tightly packed in memory.
+
+
+    Cons:
+        Clusters the namespace.
+
+
+4. NEWLINE STATEMENT SEPARATOR: (Probably not)
+    Pros:
+        Forces bad programmers to use proper indention, thus making it cleaner to read.
+        Removes the common mistake of forgetting or misplacing the semicolon.
+        Less typing.
+
+    Cons:
+        Could cause ambiguity of when the statement ends.
+        Forces the programmer to format code in a way that not always is the cleanest.
+        The code might look ugly (highly indented) if the code (must/should) contain many nested bodies.
+
+
+5. PARAMETER RESTRICTIONS
+    Pros:
+        Declaring data types in parameters makes it easier to detect errors when passing in wrong data type, so
+        declaring restrictions for the value should make it easier to detect errors when passing in value. An example
+        could be:
+
+            int calculate_birth_year(int [0, 3000] year = 2000, int age: [0-120])
+            {
+                return year - age;
+            }
+
+            void print(string name: [a-zA-Z])
+            {
+                print(name);
+            }
+
+            def calculate_birth_year
+                year=2000: int[0 to 3000 and not 1994 or 1998];
+                age: int[0 to 120];
+            {
+                return year - age;
+            }
+

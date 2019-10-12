@@ -1,0 +1,37 @@
+Rules:
+
+    1. Data types:
+        Data types needs only to be specified when the statement doesn't contain the data type (or data type literal)
+        for the variable. Typing the data type more than once is just redundant. The only case where data type is not
+        declared is during initialization of a variable and assigning it a value returned from a function. In that case,
+        providing a data type will ensure that the programmer didn't misinterpret the function's return type. As stated,
+        the data type only should be defined once, even if there are several functions on the right hand side. What's
+        important is that the data type define the final value's type for the vvariable.
+
+        Examples:
+
+            x = 1                  // Literal '1' imply data type 'int'.
+            x = uint(1) or uint 1  // Constructor 'uint' imply data type 'uint'.
+            x = func()             // INVALID! 'func' doesn't imply any data type and is thus invalid syntax.
+            x = int func()         // 'int' must be declared in this case. (Possibly make functional programming ugly?)
+
+            // This is also valid:
+            x = int func1(func2(), func3()) + func4()
+
+
+    2. Pass by const reference:
+        To improve readability, no arguments passed to a function should be changed. Internally, small sized data
+        types will be passed by value. It might be able to optimize by passing by reference if a function is passing an
+        argument and the same variable is set by the functions return value, but that will be done internally.
+
+
+FUNCTION:   <FUNCTION> ( OPTIONAL <ARGUMENTS> ) { <BODY> }
+
+DATA_TYPE:  int | float | char | <DEFINED_NAME>
+ARGUMENTS:  <DATA_TYPE> <NAME>
+NAME:       optional
+
+
+STATEMENT:
+
+ASSIGNMENT: <VARIABLE> = <EVALULATABLE> \n

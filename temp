@@ -1,0 +1,11 @@
+print "Starting program";
+
+area_of_circle(radius : real)
+{
+    pi := 3.14;
+    print "Radius of circle is", pi * radius * radius;
+}
+
+diameter := 23;
+radius := diameter / 2;
+call area_of_circle(radius = radius);

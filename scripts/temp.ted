@@ -1,0 +1,10 @@
+test : (x : int) = { print x; };
+
+call test(x=1);
+
+
+
+
+
+
+

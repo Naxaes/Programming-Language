@@ -1,0 +1,22 @@
+
+
+---- Namespaces ----
+
+
+
+
+
+---- Grammar ----
+
+program      : (statement)*
+block        : LBRACKET (statement)* RBRACKET
+statement    : assignment END_STATEMENT
+assignment   : variable DECLARE_ASSIGN expression
+expression   : term ((ADD | SUB) term)*
+term         : factor ((MUL | INT_DIV | REAL_DIV) factor)*
+factor       : INTEGER_CONST
+               | REAL_CONST
+               | variable
+               | NEG factor
+               | LPAREN expr RPAREN
+variable     :  ID
